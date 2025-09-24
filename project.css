@@ -1,0 +1,102 @@
+body{
+    background-color: coral;
+}
+.layout {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  
+}
+
+/* game cards grid */
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 15px;
+  flex: 1; /* take up most space */
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 200px;
+  width: 150px;
+  
+  cursor: pointer;
+}
+.card {
+  width: 100px;
+  height: 120px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d; /*allows card to flip with a smooth cohesive animation as preferred to a flat 2d style*/
+  transition: transform 0.5s;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border-radius: 5px;
+}
+
+.card-front {
+  background: gray; /* back of the card */
+}
+
+.card-back {
+  background: white; /* symbol side */
+  transform: rotateY(180deg);
+}
+
+
+/* leaderboard on the right */
+.leaderboard {
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: #f4f4f4;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 150px;
+}
+.nameBox{
+    padding: 15px;
+    background-color: mintcream;
+}
+#submit{
+    padding: 15px;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+    
+
