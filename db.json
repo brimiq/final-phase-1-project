@@ -1,0 +1,29 @@
+{
+  "scores": [
+    {
+      "name": "Brad",
+      "points": 6,
+      "id": 1
+    },
+    {
+      "name": "jeff",
+      "points": 6,
+      "id": 2
+    },
+    {
+      "name": "Brad",
+      "points": -1,
+      "id": 3
+    },
+    {
+      "name": "Michy",
+      "points": 2,
+      "id": 4
+    },
+    {
+      "name": "Winner",
+      "points": -3,
+      "id": 5
+    }
+  ]
+}
