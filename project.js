@@ -1,54 +1,96 @@
-const cards = document.querySelectorAll(".card");
-const inputName = document.querySelector(".form");
+document.addEventListener('DOMContentLoaded', () => {
+  const board = document.querySelector('.container');
+  const cards = Array.from(document.querySelectorAll('.card'));
+  let pointsCount = document.querySelector('.pointsCnt');
 
-inputName.addEventListener("submit", function(event){
-  event.preventDefault();
-});
+  
 
-let firstCard = null;
-let secondCard = null;
-let lockBoard = false; // prevent extra clicks during unflip delay
+  let firstCard = null;
+  let secondCard = null;
+  let lockBoard = false;
 
-// Attach the main flip function
-cards.forEach(card => card.addEventListener("click", flipCard));
+  // Shuffle + reset points
+  shuffleCards();
+  resetPoints();
 
-function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return; // prevent double-clicking the same card
+  cards.forEach(card => {
+    const back = card.querySelector('.card-back');
+    card.dataset.value = back ? back.textContent.trim() : '';
+    card.addEventListener('click', flipCard);
+  });
 
-  this.classList.add("flipped");
-
-  if (firstCard === null) {
-    firstCard = this;
-    return;
+  function shuffleCards() {
+    const shuffled = [...cards];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    shuffled.forEach(card => board.appendChild(card));
   }
 
-  secondCard = this;
-  checkForMatch();
-}
+  function flipCard() {
+    if (lockBoard) return;
+    if (this === firstCard) return;
+    if (this.classList.contains('flipped')) return;
 
-function checkForMatch() {
-  const isMatch = firstCard.dataset.value === secondCard.dataset.value;
-  isMatch ? keepCards() : unflipCards();
-}
+    this.classList.add('flipped');
 
-function keepCards() {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
-  resetBoard();
-}
+    if (!firstCard) {
+      firstCard = this;
+      return;
+    }
 
-function unflipCards() {
-  lockBoard = true;
+    secondCard = this;
+    checkForMatch();
+  }
 
-  setTimeout(() => {
-    firstCard.classList.remove("flipped");
-    secondCard.classList.remove("flipped");
-    resetBoard();
-  }, 1000);
-}
+  function checkForMatch() {
+    const isMatch = firstCard.dataset.value === secondCard.dataset.value;
+    if (isMatch) {
+      disableMatched();
+      pointsCounter();
+      resetSelection(); //  clear after match
+    } else {
+      unflipCards();
+    }
+  }
 
-function resetBoard() {
-  [firstCard, secondCard] = [null, null];
-  lockBoard = false;
-}
+  function disableMatched() {
+    firstCard.removeEventListener('click', flipCard);
+    secondCard.removeEventListener('click', flipCard);
+  }
+
+  function unflipCards() {
+    lockBoard = true;
+    setTimeout(() => {
+      firstCard.classList.remove('flipped');
+      secondCard.classList.remove('flipped');
+      resetSelection();
+    }, 900);
+  }
+
+  function resetSelection() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+  }
+
+  function pointsCounter() {
+    let currentPoints = parseInt(pointsCount.textContent, 10);
+    currentPoints++;
+    pointsCount.textContent = currentPoints;
+  }
+
+  function resetPoints() {
+    pointsCount.textContent = 0;
+  }
+});
+
+let playerName = ""
+document.querySelector(".form").addEventListener("submit",(event)=>{event.preventDefault()
+  const input = document.querySelector(".nameBox")
+  playerName=input.value.trim()
+  if(playerName){
+    alert(`Welcome ${playerName}!`)
+  }
+})

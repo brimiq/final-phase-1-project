@@ -1,96 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Card Twister</title>
   <link rel="stylesheet" href="./project.css">
 </head>
 <body>
   <header id="gameName">Card Twister</header>
+
   <section>
-  <form class="form"><input type="text" placeholder="Enter Name" class="nameBox">
-<input type="submit" value="submit" id="submit">
-</form>
-</section>
+    <form class="form">
+      <input type="text" placeholder="Enter Name" class="nameBox">
+      <input type="submit" value="submit" id="submit">
+    </form>
+  </section>
+
+  <section>
+    <h2>Points: <span class="pointsCnt">0</span></h2>
+  </section>
+
+  <section>
+    <h2>Moves:</h2>
+  </section>
+
   <div class="layout">
-   
-    <main class="container">
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🍎</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🍎</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🐶</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🐶</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🌟</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🌟</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🚗</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">🚗</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">😕</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">😕</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">😇</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front"></div>
-          <div class="card-back">😇</div>
-        </div>
-      </div>
+    <main id="board" class="container">
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🍎</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🍎</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🐶</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🐶</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🌟</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🌟</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🚗</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">🚗</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">😕</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">😕</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">😇</div></div></div>
+      <div class="card"><div class="card-inner"><div class="card-front"></div><div class="card-back">😇</div></div></div>
     </main>
 
-  
     <aside class="leaderboard">
       <h2>Leaderboard</h2>
       <ul>
@@ -99,8 +48,6 @@
         <li id="playerThree">""</li>
       </ul>
     </aside>
-    
-    
   </div>
 
   <script src="./project.js"></script>
