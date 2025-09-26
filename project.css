@@ -1,24 +1,39 @@
 body {
-  background-color: coral;
+  background: linear-gradient(135deg, #f9d6d2, #f9f9d6, #d2f9e5, #d2e0f9);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* layout for board + leaderboard */
 .layout {
   display: flex;
-  gap: 20px;
-  padding: 20px;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* game cards grid */
 .container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-  gap: 15px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   flex: 1;
 }
 
 .card {
-  width: 100px;
-  height: 120px;
+  width: 110px;
+  height: 140px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -28,71 +43,128 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.5s;
+  transition: transform 0.6s ease;
 }
 
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
-  border: 2px solid black;
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  border-radius: 5px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* card back (hidden side) */
 .card-front {
-  background: gray; /* back of the card */
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+  border: none;
+  color: white;
+  letter-spacing: 2px;
 }
 
+/* card face (symbol side) */
 .card-back {
-  background: white; /* symbol side */
+  background: #fff;
+  border: 2px solid #ddd;
   transform: rotateY(180deg);
 }
 
-/* leaderboard on the right */
+/* leaderboard */
 .leaderboard {
-  width: 200px;
-  border: 1px solid black;
+  width: 220px;
+  border-radius: 12px;
+  background: #ffffffdd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+}
+
+.leaderboard h2 {
+  margin: 0 0 15px;
+  text-align: center;
+  color: #444;
+}
+
+.leaderboard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leaderboard li {
+  background: #f2f2f2;
+  margin: 8px 0;
   padding: 10px;
-  background-color: #f4f4f4;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
 }
 
+/* header */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  padding: 25px 0;
+  letter-spacing: 2px;
 }
 
+/* sections (points, moves, form) */
 section {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: 15px;
 }
 
+/* cleaner name input */
 .nameBox {
-  padding: 15px;
-  background-color: mintcream;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.nameBox:focus {
+  border-color: #a18cd1;
+  box-shadow: 0 0 8px rgba(161, 140, 209, 0.4);
 }
 
 #submit {
-  padding: 15px;
+  padding: 12px 18px;
   color: white;
-  background-color: green;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  border: none;
+  border-radius: 8px;
+  margin-left: 10px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#submit:hover {
+  background: linear-gradient(135deg, #56ccf2, #2f80ed);
+  transform: translateY(-2px);
 }
 
 h2 {
-  border: 2px solid black;
-  margin: 20px;
-  padding: 20px;
+  margin: 10px;
+  padding: 12px 20px;
+  background: #ffffffcc;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }

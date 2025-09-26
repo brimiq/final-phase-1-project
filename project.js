@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // player name
   let playerName = "";
 
+  // leaderboard slots
+  const playerOne = document.getElementById("playerOne");
+  const playerTwo = document.getElementById("playerTwo");
+  const playerThree = document.getElementById("playerThree");
+
   // Handle form submit to capture player name
   const form = document.querySelector('.form');
   form.addEventListener('submit', (e) => {
@@ -28,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // shuffle + reset points at start
   shuffleCards();
   resetPoints();
+  loadHighScores();
 
   // assign dataset values for matching
   cards.forEach(card => {
@@ -72,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } else {
       unflipCards();
-      pointDeducter()
+      pointDeducter();
     }
   }
 
@@ -102,10 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
     currentPoints++;
     pointsCount.textContent = currentPoints;
   }
-  function pointDeducter(){
-    let currentPoints = parseInt(pointsCount.textContent, 10)
+
+  function pointDeducter() {
+    let currentPoints = parseInt(pointsCount.textContent, 10);
     currentPoints--;
-    pointsCount.textContent = currentPoints
+    pointsCount.textContent = currentPoints;
   }
 
   function resetPoints() {
@@ -131,12 +138,29 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(" Score saved:", data);
+        console.log("Score saved:", data);
         alert(`Game Over, ${playerName}! Your score of ${points} has been saved.`);
+        loadHighScores(); // refresh leaderboard
       })
       .catch(err => {
-        console.error(" Error saving score:", err);
+        console.error("Error saving score:", err);
         alert("Game Over, but score could not be saved.");
       });
+  }
+
+  // Fetch & update leaderboard
+  function loadHighScores() {
+    fetch("http://localhost:3000/scores")
+      .then(res => res.json())
+      .then(data => {
+        // sort highest to lowest
+        const sorted = data.sort((a, b) => b.points - a.points).slice(0, 3);
+
+        // update leaderboard slots
+        playerOne.textContent = sorted[0] ? `${sorted[0].name}: ${sorted[0].points}` : '""';
+        playerTwo.textContent = sorted[1] ? `${sorted[1].name}: ${sorted[1].points}` : '""';
+        playerThree.textContent = sorted[2] ? `${sorted[2].name}: ${sorted[2].points}` : '""';
+      })
+      .catch(err => console.error("Error loading leaderboard:", err));
   }
 });

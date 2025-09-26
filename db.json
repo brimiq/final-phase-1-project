@@ -24,6 +24,11 @@
       "name": "Winner",
       "points": -3,
       "id": 5
+    },
+    {
+      "name": "Brad",
+      "points": -1,
+      "id": 6
     }
   ]
 }
