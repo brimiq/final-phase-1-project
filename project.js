@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function pointDeducter() {
     let currentPoints = parseInt(pointsCount.textContent, 10);
-    currentPoints--;
+    currentPoints= currentPoints-0.5;
     pointsCount.textContent = currentPoints;
   }
 
